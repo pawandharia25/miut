@@ -464,133 +464,133 @@ Future<List<Data>> fetchDataByDate(String date) async {
   return dataList;
 }
 
-class AttendenceSearchStaffLko extends StatefulWidget {
-  @override
-  _AttendenceSearchStaffLkoState createState() =>
-      _AttendenceSearchStaffLkoState();
-}
+// class AttendenceSearchStaffLko extends StatefulWidget {
+//   @override
+//   _AttendenceSearchStaffLkoState createState() =>
+//       _AttendenceSearchStaffLkoState();
+// }
 
-class _AttendenceSearchStaffLkoState extends State<AttendenceSearchStaffLko> {
-  DateTime selectedDate = DateTime.now();
-  String dateString =
-      DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
-  late Future<void> responseData;
-  List<Data> dataList = [];
-  int aCount = 0;
-  int pCount = 0;
+// class _AttendenceSearchStaffLkoState extends State<AttendenceSearchStaffLko> {
+//   DateTime selectedDate = DateTime.now();
+//   String dateString =
+//       DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+//   late Future<void> responseData;
+//   List<Data> dataList = [];
+//   int aCount = 0;
+//   int pCount = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    fetchDataByDate(dateString).then((value) {
-      dataList.clear();
-      dataList.addAll(value);
-      calculate();
-    });
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     fetchDataByDate(dateString).then((value) {
+//       dataList.clear();
+//       dataList.addAll(value);
+//       calculate();
+//     });
+//   }
 
-  void calculate() {
-    aCount = 0;
-    pCount = 0;
-    for (Data d in dataList) {
-      if (d.status == "A") {
-        aCount++;
-      } else {
-        pCount++;
-      }
-    }
-    if (mounted) {
-      setState(() {});
-    }
-  }
+//   void calculate() {
+//     aCount = 0;
+//     pCount = 0;
+//     for (Data d in dataList) {
+//       if (d.status == "A") {
+//         aCount++;
+//       } else {
+//         pCount++;
+//       }
+//     }
+//     if (mounted) {
+//       setState(() {});
+//     }
+//   }
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-            context: context,
-            initialDate: selectedDate,
-            firstDate: DateTime(2000),
-            lastDate: DateTime.now())
-        .then((value) {
-      if (mounted) {
-        setState(() {
-          selectedDate = value!;
-          dateString = DateFormat('yyyy-MM-dd').format(value).toString();
-          fetchDataByDate(dateString).then((value) {
-            dataList.clear();
-            dataList.addAll(value);
-            calculate();
-          });
-        });
-      }
-    });
-  }
+//   Future<void> _selectDate(BuildContext context) async {
+//     final DateTime? picked = await showDatePicker(
+//             context: context,
+//             initialDate: selectedDate,
+//             firstDate: DateTime(2000),
+//             lastDate: DateTime.now())
+//         .then((value) {
+//       if (mounted) {
+//         setState(() {
+//           selectedDate = value!;
+//           dateString = DateFormat('yyyy-MM-dd').format(value).toString();
+//           fetchDataByDate(dateString).then((value) {
+//             dataList.clear();
+//             dataList.addAll(value);
+//             calculate();
+//           });
+//         });
+//       }
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Date:- ',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                Text(
-                  '${dateString}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Present:- $pCount   ",
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "Absent:- $aCount   ",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            InkWell(
-              onTap: () => _selectDate(context),
-              child: Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xFF111d5e),
-                      borderRadius: BorderRadius.circular(17)),
-                  height: 45,
-                  width: 90,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Select date',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
-                  )),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 Text(
+//                   'Date:- ',
+//                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+//                 ),
+//                 Text(
+//                   '${dateString}',
+//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                 ),
+//               ],
+//             ),
+//             SizedBox(
+//               height: 10.0,
+//             ),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 Text(
+//                   "Present:- $pCount   ",
+//                   style: TextStyle(
+//                       color: Colors.green,
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.bold),
+//                 ),
+//                 Text(
+//                   "Absent:- $aCount   ",
+//                   style: TextStyle(
+//                       color: Colors.red,
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.bold),
+//                 ),
+//               ],
+//             ),
+//             SizedBox(
+//               height: 10.0,
+//             ),
+//             InkWell(
+//               onTap: () => _selectDate(context),
+//               child: Container(
+//                   decoration: BoxDecoration(
+//                       color: Color(0xFF111d5e),
+//                       borderRadius: BorderRadius.circular(17)),
+//                   height: 45,
+//                   width: 90,
+//                   alignment: Alignment.center,
+//                   child: Text(
+//                     'Select date',
+//                     textAlign: TextAlign.center,
+//                     style: TextStyle(color: Colors.white),
+//                   )),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class DataBydateLko extends StatefulWidget {
   const DataBydateLko({super.key});

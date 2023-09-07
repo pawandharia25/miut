@@ -21,15 +21,26 @@ class _FacultyLState extends State<FacultyL> {
     futureData = LucknowAPi().fetchData();
   }
 
+  // Future<FacultyEmployeeLkoModel> fetchData() async {
+  //   const apiUrl =
+  //       'https://luckstd.muituniversity.in/api/student/GetFaccultyAttendance'; // Replace with your API URL
 
+  //   final response = await http.get(Uri.parse(apiUrl));
 
-  // static double checkDouble(dynamic value) {
-  //   if (value is String) {
-  //     return double.parse(value);
+  //   if (response.statusCode == 200) {
+  //     return FacultyEmployeeLkoModel.fromJson(json.decode(response.body));
   //   } else {
-  //     return value.toDouble();
+  //     throw Exception('Failed to load data from API');
   //   }
   // }
+
+  static double checkDouble(dynamic value) {
+    if (value is String) {
+      return double.parse(value);
+    } else {
+      return value.toDouble();
+    }
+  }
 
   Future<FacultyEmployeeLkoModel> refreshFacultyLKo(
       BuildContext context) async {
@@ -194,135 +205,135 @@ class Data1 {
   }
 }
 
-// class FacultyDataLko extends StatefulWidget {
-//   @override
-//   _FacultyDataLkoState createState() => _FacultyDataLkoState();
-// }
+class FacultyDataLko extends StatefulWidget {
+  @override
+  _FacultyDataLkoState createState() => _FacultyDataLkoState();
+}
 
-// class _FacultyDataLkoState extends State<FacultyDataLko> {
-//   late Future<Album1> futureData;
+class _FacultyDataLkoState extends State<FacultyDataLko> {
+  late Future<Album1> futureData;
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     futureData = fetchData();
-//   }
+  @override
+  void initState() {
+    super.initState();
+    futureData = fetchData();
+  }
 
-//   Future<Album1> fetchData() async {
-//     const apiUrl =
-//         'https://luckstd.muituniversity.in/api/student/GetFaccultyAttendanceList'; // Replace with your API URL
+  Future<Album1> fetchData() async {
+    const apiUrl =
+        'https://luckstd.muituniversity.in/api/student/GetFaccultyAttendanceList'; // Replace with your API URL
 
-//     final response = await http.get(Uri.parse(apiUrl));
+    final response = await http.get(Uri.parse(apiUrl));
 
-//     if (response.statusCode == 200) {
-//       return Album1.fromJson(json.decode(response.body));
-//     } else {
-//       throw Exception('Failed to load data from API');
-//     }
-//   }
+    if (response.statusCode == 200) {
+      return Album1.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load data from API');
+    }
+  }
 
-//   static double checkDouble(dynamic value) {
-//     if (value is String) {
-//       return double.parse(value);
-//     } else {
-//       return value.toDouble();
-//     }
-//   }
+  static double checkDouble(dynamic value) {
+    if (value is String) {
+      return double.parse(value);
+    } else {
+      return value.toDouble();
+    }
+  }
 
-//   Future<Album1> _refreshProducts(BuildContext context) async {
-//     return fetchData();
-//   }
+  Future<Album1> _refreshProducts(BuildContext context) async {
+    return fetchData();
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return RefreshIndicator(
-//       onRefresh: () => _refreshProducts(context),
-//       child: FutureBuilder<Album1>(
-//         future: futureData,
-//         builder: (context, snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return Center(
-//                 child:
-//                     CircularProgressIndicator()); // Display loading indicator
-//           } else if (snapshot.hasError) {
-//             return Text('Error: ${snapshot.error}');
-//           } else {
-//             final data = snapshot.data!;
-//             return ListView.builder(
-//               itemCount: data.data!.length,
-//               itemBuilder: (context, index) {
-//                 final dataItem = data.data![index];
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () => _refreshProducts(context),
+      child: FutureBuilder<Album1>(
+        future: futureData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+                child:
+                    CircularProgressIndicator()); // Display loading indicator
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            final data = snapshot.data!;
+            return ListView.builder(
+              itemCount: data.data!.length,
+              itemBuilder: (context, index) {
+                final dataItem = data.data![index];
 
-//                 return Padding(
-//                   padding: EdgeInsets.only(left: 5, right: 5, top: 0),
-//                   child: Table(
-//                       border: TableBorder(
-//                         horizontalInside: BorderSide(
-//                           color: Color(0xFF111d5e), // Color of the border
-//                           width: 1.0, // Width of the border
-//                         ),
-//                         verticalInside: BorderSide(
-//                           color: Color(0xFF111d5e), // Color of the border
-//                           width: 1.0, // Width of the border
-//                         ),
-//                         bottom: BorderSide(
-//                           color:
-//                               Color(0xFF111d5e), // Color of the bottom border
-//                           width: 1.0, // Width of the bottom border
-//                         ),
-//                       ),
-//                       columnWidths: {
-//                         0: FlexColumnWidth(4),
-//                         1: FlexColumnWidth(4),
-//                         2: FlexColumnWidth(1.2),
-//                       }, // All
-//                       children: [
-//                         TableRow(children: [
-//                           Column(
-//                             mainAxisAlignment: MainAxisAlignment.start,
-//                             children: [
-//                               Container(
-//                                 alignment: Alignment.centerLeft,
-//                                 child: Text(
-//                                   "${dataItem.employeeName ?? "Empty"}",
-//                                   textAlign: TextAlign.start,
-//                                   style: TextStyle(
-//                                     fontSize: 15,
-//                                   ),
-//                                 ),
-//                               ),
-//                               Container(
-//                                 alignment: Alignment.centerLeft,
-//                                 child: Text(
-//                                   "${dataItem.employeeCode ?? "Empty"}",
-//                                   textAlign: TextAlign.justify,
-//                                   style: TextStyle(
-//                                       fontSize: 15, color: Color(0xFFfcc736)),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                           Text(
-//                             '${dataItem.departmentSName ?? "Empty"}',
-//                             style: TextStyle(fontSize: 15),
-//                             textAlign: TextAlign.center,
-//                           ),
-//                           Text(
-//                             ' ${dataItem.status ?? "Empty"}',
-//                             style: TextStyle(fontSize: 15),
-//                             textAlign: TextAlign.center,
-//                           ),
-//                         ]),
-//                       ]),
-//                 );
-//               },
-//             );
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
+                return Padding(
+                  padding: EdgeInsets.only(left: 5, right: 5, top: 0),
+                  child: Table(
+                      border: TableBorder(
+                        horizontalInside: BorderSide(
+                          color: Color(0xFF111d5e), // Color of the border
+                          width: 1.0, // Width of the border
+                        ),
+                        verticalInside: BorderSide(
+                          color: Color(0xFF111d5e), // Color of the border
+                          width: 1.0, // Width of the border
+                        ),
+                        bottom: BorderSide(
+                          color:
+                              Color(0xFF111d5e), // Color of the bottom border
+                          width: 1.0, // Width of the bottom border
+                        ),
+                      ),
+                      columnWidths: {
+                        0: FlexColumnWidth(4),
+                        1: FlexColumnWidth(4),
+                        2: FlexColumnWidth(1.2),
+                      }, // All
+                      children: [
+                        TableRow(children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "${dataItem.employeeName ?? "Empty"}",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "${dataItem.employeeCode ?? "Empty"}",
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                      fontSize: 15, color: Color(0xFFfcc736)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '${dataItem.departmentSName ?? "Empty"}',
+                            style: TextStyle(fontSize: 15),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            ' ${dataItem.status ?? "Empty"}',
+                            style: TextStyle(fontSize: 15),
+                            textAlign: TextAlign.center,
+                          ),
+                        ]),
+                      ]),
+                );
+              },
+            );
+          }
+        },
+      ),
+    );
+  }
+}
 
 Future<List<EmployeeAttendenceModel>> fetchDataByDate(String date) async {
   var resultBody;
@@ -351,7 +362,6 @@ Future<List<EmployeeAttendenceModel>> fetchDataByDate(String date) async {
   return dataList;
 }
 
-
 class DataBydatestaffLko extends StatefulWidget {
   const DataBydatestaffLko({super.key});
 
@@ -368,6 +378,17 @@ class _DataBydatestaffLkoState extends State<DataBydatestaffLko> {
   int aCount = 0;
   int pCount = 0;
 
+  @override
+  void initState() {
+    super.initState();
+
+    fetchDataByDate(dateString).then((value) {
+      dataList.clear();
+      dataList.addAll(value);
+      calculate();
+    });
+  }
+
   void calculate() {
     aCount = 0;
     pCount = 0;
@@ -381,16 +402,6 @@ class _DataBydatestaffLkoState extends State<DataBydatestaffLko> {
     if (mounted) {
       setState(() {});
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchDataByDate(dateString).then((value) {
-      dataList.clear();
-      dataList.addAll(value);
-      calculate();
-    });
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -435,7 +446,8 @@ class _DataBydatestaffLkoState extends State<DataBydatestaffLko> {
       //   ),
       // ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: FutureBuilder<List<EmployeeAttendenceModel>>(
+      body: 
+      FutureBuilder<List<EmployeeAttendenceModel>>(
           future: fetchDataByDate(dateString),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

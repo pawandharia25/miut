@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:miut/model/lucknow/staffemployeeattendencelko.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
 import 'package:miut/pages/widgets/lucknowApidata/staff.dart';
 import '../pages/widgets/currentdate.dart';
@@ -13,26 +15,78 @@ class StaffListLko extends StatefulWidget {
 }
 
 class _StaffListLkoState extends State<StaffListLko> {
-  //   // Initialize a list of items for your table
-  // List<StaffDataLko> items = [
-  //  StaffDataLko()
-  // ];
+  DateTime selectedDate = DateTime.now();
+  String dateString =
+      DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+  late Future<void> responseData;
+  List<Data> dataList = [];
+  int aCount = 0;
+  int pCount = 0;
+  @override
+  void initState() {
+    super.initState();
+    fetchDataByDate(dateString).then((value) {
+      dataList.clear();
+      dataList.addAll(value);
+      calculate();
+    });
+  }
 
-  // List<StaffDataLko> filteredItems = [];
+  void calculate() {
+    aCount = 0;
+    pCount = 0;
+    for (Data d in dataList) {
+      if (d.status == "A") {
+        aCount++;
+      } else {
+        pCount++;
+      }
+    }
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   filteredItems = items; // Initialize filteredItems with all items
-  // }
+  Future<void> _selectDate1(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: selectedDate,
+            firstDate: DateTime(2000),
+            lastDate: DateTime.now())
+        .then((value) {
+      if (mounted) {
+        setState(() {
+          selectedDate = value!;
+          dateString = DateFormat('yyyy-MM-dd').format(value).toString();
+          fetchDataByDate(dateString).then((value) {
+            dataList.clear();
+            dataList.addAll(value);
+          });
+        });
+      }
+    });
+  }
 
-  // void _filterItems(String query) {
-  //   setState(() {
-  //     filteredItems = items
-  //         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-  //         .toList();
-  //   });
-  // }
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: selectedDate,
+            firstDate: DateTime(2000),
+            lastDate: DateTime.now())
+        .then((value) {
+      if (mounted) {
+        setState(() {
+          selectedDate = value!;
+          dateString = DateFormat('yyyy-MM-dd').format(value).toString();
+          fetchDataByDate(dateString).then((value) {
+            dataList.clear();
+            dataList.addAll(value);
+            calculate();
+          });
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,28 +101,6 @@ class _StaffListLkoState extends State<StaffListLko> {
           toolbarHeight: 80,
         ),
         body: ListView(children: [
-          // Column(
-          //   children: [
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: TextField(
-          //         onChanged: _filterItems,
-          //         decoration: InputDecoration(
-          //           labelText: 'Search',
-          //           border: OutlineInputBorder(
-          //               borderRadius: BorderRadius.circular(10)),
-          //           prefixIcon: Icon(Icons.search),
-          //         ),
-          //       ),
-          //     ),
-          //     ListView.builder(
-          //       itemCount: filteredItems.length,
-          //       itemBuilder: (context, index) {
-          //         return ListTile(
-          //           title: Text(filteredItems[index] as String),
-          //         );
-          //       },
-          //     ),
           Container(
             alignment: Alignment.topRight,
             child: Text(
@@ -76,60 +108,229 @@ class _StaffListLkoState extends State<StaffListLko> {
               style: TextStyle(fontSize: 15),
             ),
           ),
-          Container(height: 130, width: 100, child: AttendenceSearchStaffLko()),
           Padding(
             padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
+              left: 5,
+              right: 5,
             ),
-            child: Table(
-                border: TableBorder(
-                  horizontalInside: BorderSide(
-                    color: Color(0xFF111d5e), // Color of the border
-                    width: 1.0, // Width of the border
-                  ),
-                  verticalInside: BorderSide(
-                    color: Color(0xFF111d5e), // Color of the border
-                    width: 1.0, // Width of the border
-                  ),
-                  top: BorderSide(
-                    color: Color(0xFF111d5e), // Color of the bottom border
-                    width: 1.0,
-                  ),
-                  bottom: BorderSide(
-                    color: Color(0xFF111d5e), // Color of the bottom border
-                    width: 1.0, // Width of the bottom border
-                  ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Date:- ',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    Text(
+                      '${dateString}',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-                columnWidths: {
-                  0: FlexColumnWidth(4),
-                  1: FlexColumnWidth(4),
-                  2: FlexColumnWidth(1.2),
-                },
-                children: [
-                  TableRow(children: [
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     Text(
-                      "Name",
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.center,
+                      "Present:- $pCount   ",
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Department',
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.center,
+                      "Absent:- $aCount   ",
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      'Status',
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.center,
+                  ],
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                InkWell(
+                  onTap: () {
+                    // _selectDate1(context);
+                    _selectDate(context);
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xFF111d5e),
+                          borderRadius: BorderRadius.circular(17)),
+                      height: 45,
+                      width: 90,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Select Date',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Table(
+                    border: TableBorder(
+                      horizontalInside: BorderSide(
+                        color: Color(0xFF111d5e), // Color of the border
+                        width: 1.0, // Width of the border
+                      ),
+                      verticalInside: BorderSide(
+                        color: Color(0xFF111d5e), // Color of the border
+                        width: 1.0, // Width of the border
+                      ),
+                      top: BorderSide(
+                        color: Color(0xFF111d5e), // Color of the border
+                        width: 1.0, // Width of the border
+                      ),
+                      bottom: BorderSide(
+                        color: Color(0xFF111d5e), // Color of the bottom border
+                        width: 1.0, // Width of the bottom border
+                      ),
                     ),
-                  ]),
-                ]),
+                    columnWidths: {
+                      0: FlexColumnWidth(4),
+                      1: FlexColumnWidth(4),
+                      2: FlexColumnWidth(1.2),
+                    },
+                    children: [
+                      TableRow(children: [
+                        Container(
+                          decoration: BoxDecoration(color: Color(0xFFfcc736)),
+                          child: Text(
+                            "Name",
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(color: Color(0xFFfcc736)),
+                          child: Text(
+                            'Department',
+                            style: TextStyle(fontSize: 15),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(color: Color(0xFFfcc736)),
+                          child: Text(
+                            'Status',
+                            style: TextStyle(fontSize: 15),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                    ]),
+              ],
+            ),
           ),
           Container(
             height: 570,
             width: double.infinity,
-            child: DataBydateLko(),
+            child: FutureBuilder<List<Data>>(
+                future: fetchDataByDate(dateString),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                        child:
+                            CircularProgressIndicator()); // Display loading indicator
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    final data = snapshot.data!;
+                    return ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          final dataItem = data[index];
+                          return Padding(
+                            padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                            child: Table(
+                                border: TableBorder(
+                                  horizontalInside: BorderSide(
+                                    color: Color(
+                                        0xFF111d5e), // Color of the border
+                                    width: 1.0, // Width of the border
+                                  ),
+                                  verticalInside: BorderSide(
+                                    color: Color(
+                                        0xFF111d5e), // Color of the border
+                                    width: 1.0, // Width of the border
+                                  ),
+                                  bottom: BorderSide(
+                                    color: Color(
+                                        0xFF111d5e), // Color of the bottom border
+                                    width: 1.0, // Width of the bottom border
+                                  ),
+                                ),
+                                columnWidths: {
+                                  0: FlexColumnWidth(4),
+                                  1: FlexColumnWidth(4),
+                                  2: FlexColumnWidth(1.2),
+                                }, // Allows to add a border decoration around your table
+                                children: [
+                                  TableRow(children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "${dataItem.employeeName ?? "Empty"}",
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "${dataItem.employeeCode ?? "Empty"}",
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Color(0xFFfcc736)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      '${dataItem.departmentSName ?? "Empty"}',
+                                      style: TextStyle(fontSize: 15),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    dataItem.status == "P"
+                                        ? Text(
+                                            '${dataItem.status ?? "Empty"}',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.green,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          )
+                                        : Text(
+                                            '${dataItem.status ?? "Empty"}',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.red,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                  ]),
+                                ]),
+                          );
+                        });
+                  }
+                }),
           ),
         ]));
   }

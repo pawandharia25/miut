@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miut/api/lucknow_api.dart';
 import 'package:miut/api/noida_api.dart';
 import 'package:miut/noida/facultydata.dart';
@@ -6,13 +7,9 @@ import 'package:miut/noida/staffdata.dart';
 import 'package:miut/pages/widgets/NoidaApidata/Shift2Admissionnoida.dart';
 import 'package:miut/pages/widgets/NoidaApidata/TotalstudentNoida.dart';
 import 'package:miut/pages/widgets/NoidaApidata/faculty.dart';
-import 'package:miut/pages/widgets/NoidaApidata/finacialyearcollection.dart';
-import 'package:miut/pages/widgets/NoidaApidata/recoveryfees.dart';
 import 'package:miut/pages/widgets/NoidaApidata/studentAttendence.dart';
-import 'package:miut/pages/widgets/NoidaApidata/totalcollection.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
 import 'package:miut/pages/widgets/NoidaApidata/Staff.dart';
-import 'package:miut/pages/widgets/mainpage.dart';
 import 'widgets/currentdate.dart';
 
 class Noida extends StatelessWidget {
@@ -25,7 +22,7 @@ class Noida extends StatelessWidget {
         leading: null,
         backgroundColor: Color(0xFF111d5e),
         flexibleSpace: const AppBarLogo(),
-        toolbarHeight: 80,
+        toolbarHeight: 80.h,
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
@@ -48,7 +45,7 @@ class Noida extends StatelessWidget {
         Column(
           children: [
             Container(
-              height: 50,
+              height: 50.h,
               width: double.infinity,
               decoration: BoxDecoration(color: Color(0xFFfcc736)),
               child: Row(
@@ -69,8 +66,8 @@ class Noida extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             InkWell(
               onTap: () {
@@ -85,7 +82,7 @@ class Noida extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        height: 80,
+                        height: 80.h,
                         width: double.infinity,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -98,8 +95,8 @@ class Noida extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -116,7 +113,7 @@ class Noida extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.pinkAccent),
-                        height: 80,
+                        height: 80.h,
                         width: double.infinity,
                         child: Staff(),
                       ),
@@ -125,8 +122,8 @@ class Noida extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -136,7 +133,7 @@ class Noida extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                        height: 80,
+                        height: 80.h,
                         width: double.infinity,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -147,8 +144,8 @@ class Noida extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -158,51 +155,7 @@ class Noida extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.greenAccent),
-                        height: 80,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        child: Collection())
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.pink.shade300),
-                        height: 80,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        child: FinacialYear()),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        height: 80,
+                        height: 80.h,
                         width: double.infinity,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -213,8 +166,8 @@ class Noida extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -224,30 +177,7 @@ class Noida extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: 200,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.green.shade300),
-                      child: RecoveryFees(),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        height: 180,
+                        height: 180.h,
                         width: double.infinity,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -258,8 +188,8 @@ class Noida extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 100,
+            SizedBox(
+              height: 100.h,
             ),
           ],
         ),

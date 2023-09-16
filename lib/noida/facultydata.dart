@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:miut/model/noida/facultyemployeeattendenceN.dart';
 import 'package:miut/pages/widgets/NoidaApidata/faculty.dart';
@@ -237,7 +238,7 @@ class _FacultyListState extends State<FacultyList> {
               ),
             ),
             Container(
-              height: 570,
+              height: 500.h,
               width: double.infinity,
               child: FutureBuilder<List<EmployeeAttendenceDataModel>>(
                   future: fetchDataByDate(dateString),
@@ -344,6 +345,9 @@ class _FacultyListState extends State<FacultyList> {
                   }),
             ),
           ]),
+          Container(
+            height: 20.h,
+          )
         ],
       ),
     );

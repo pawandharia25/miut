@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatelessWidget {
- final Function updateWidget;
+  final Function updateWidget;
   const Home(this.updateWidget, {super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +22,15 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: 30.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                  onTap: () {
+                onTap: () {
                   updateWidget(2);
-
                 },
                 child: Material(
                   elevation: 5,
@@ -41,8 +40,8 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 165.0,
-                        width: 165.0,
+                        height: 165.0.h,
+                        width: 165.0.w,
                         alignment: Alignment.center,
                         child: const Text(
                           "Lucknow",
@@ -54,16 +53,15 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 20,
+              SizedBox(
+                width: 20.w,
               ),
               InkWell(
-
-                  onTap: () {
+                onTap: () {
                   updateWidget(1);
-                // onTap: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => Noida()));
+                  // onTap: () {
+                  //   Navigator.push(context,
+                  //       MaterialPageRoute(builder: (context) => Noida()));
                 },
                 child: Material(
                   elevation: 5.0,
@@ -73,8 +71,8 @@ class Home extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        height: 165.0,
-                        width: 165.0,
+                        height: 165.0.h,
+                        width: 165.0.w,
                         child: const Text(
                           "Noida",
                           style: TextStyle(fontSize: 25, color: Colors.white),

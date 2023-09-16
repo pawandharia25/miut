@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:miut/model/lucknow/staffemployeeattendencelko.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
@@ -232,7 +233,7 @@ class _StaffListLkoState extends State<StaffListLko> {
             ),
           ),
           Container(
-            height: 570,
+            height: 500.h,
             width: double.infinity,
             child: FutureBuilder<List<Data>>(
                 future: fetchDataByDate(dateString),
@@ -332,6 +333,9 @@ class _StaffListLkoState extends State<StaffListLko> {
                   }
                 }),
           ),
+          Container(
+            height: 20.h,
+          )
         ]));
   }
 }

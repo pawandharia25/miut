@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:miut/api/lucknow_api.dart';
 import 'package:miut/lucknow/facultydatalko.dart';
 import 'package:miut/lucknow/staffdatalko.dart';
 import 'package:miut/pages/widgets/lucknowApidata/faculty.dart';
-import 'package:miut/pages/widgets/lucknowApidata/financialyearLko.dart';
+
 import 'package:miut/pages/widgets/lucknowApidata/shift2addmissionlko.dart';
 import 'package:miut/pages/widgets/lucknowApidata/staff.dart';
 import 'package:miut/pages/widgets/lucknowApidata/studentattendence.dart';
-import 'package:miut/pages/widgets/lucknowApidata/todaycollection.dart';
+
 import 'package:miut/pages/widgets/lucknowApidata/totalstudentlistlko.dart';
-import 'package:miut/pages/widgets/mainpage.dart';
+
 import 'widgets/appbarlogo.dart';
 import 'widgets/currentdate.dart';
-import 'widgets/lucknowApidata/recoveryfeeslko.dart';
 
 class Lucknow extends StatelessWidget {
   Lucknow(Function(int index) onSelectedBottom, {super.key});
@@ -23,7 +23,7 @@ class Lucknow extends StatelessWidget {
       appBar: AppBar(
         leading: null,
         backgroundColor: Color(0xFF111d5e),
-        toolbarHeight: 80,
+        toolbarHeight: 80.h,
         flexibleSpace: AppBarLogo(),
       ),
       floatingActionButton: FloatingActionButton(
@@ -48,7 +48,7 @@ class Lucknow extends StatelessWidget {
         Column(
           children: [
             Container(
-              height: 50,
+              height: 50.h,
               width: double.infinity,
               decoration: BoxDecoration(color: Color(0xFFfcc736)),
               child: Row(
@@ -68,8 +68,8 @@ class Lucknow extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             InkWell(
               onTap: () {
@@ -83,10 +83,10 @@ class Lucknow extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                          height: 80,
+                          height: 80.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(10.h),
                               color: Colors.blue.shade300),
                           alignment: Alignment.center,
                           child: FacultyL()),
@@ -96,7 +96,7 @@ class Lucknow extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -104,7 +104,7 @@ class Lucknow extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => StaffListLko()));
               },
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
                 child: Material(
                   elevation: 5,
                   borderRadius: BorderRadius.circular(10),
@@ -114,7 +114,7 @@ class Lucknow extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.pinkAccent),
-                          height: 80,
+                          height: 80.h,
                           width: double.infinity,
                           alignment: Alignment.center,
                           child: StaffL()),
@@ -123,8 +123,8 @@ class Lucknow extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -134,7 +134,7 @@ class Lucknow extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                        height: 80,
+                        height: 80.h,
                         width: double.infinity,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -145,59 +145,15 @@ class Lucknow extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.greenAccent),
-                        height: 80,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        child: TodayCollectionL()),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.pink.shade300),
-                        height: 80,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        child: FinacialYearLko()),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
                   Container(
-                      height: 80,
+                      height: 80.h,
                       width: double.infinity,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -208,47 +164,25 @@ class Lucknow extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 10.h,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                      height: 80,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFFfcc736)),
-                      child: PhdReg()),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        height: 200,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.green.shade300),
-                        child: RecoveryFeesLko()),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
+            // Padding(
+            //   padding: EdgeInsets.all(10),
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //           height: 80.h,
+            //           width: double.infinity,
+            //           alignment: Alignment.center,
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10),
+            //               color: Color(0xFFfcc736)),
+            //           child: PhdReg()),
+            //     ],
+            //   ),
+            // ),
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -269,8 +203,8 @@ class Lucknow extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 80,
+            SizedBox(
+              height: 80.h,
             )
           ],
         ),

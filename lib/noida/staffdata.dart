@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:miut/model/noida/staffemployeeattendenceN.dart';
 import 'package:miut/pages/widgets/NoidaApidata/Staff.dart';
@@ -232,7 +233,7 @@ class _StaffListState extends State<StaffList> {
             ),
           ),
           Container(
-            height: 570,
+            height: 500.h,
             width: double.infinity,
             child: FutureBuilder<List<EmployeeAttendenceStaffNModel>>(
                 future: fetchDataByDate(dateString),
@@ -332,6 +333,9 @@ class _StaffListState extends State<StaffList> {
                   }
                 }),
           ),
+          Container(
+            height: 20.h,
+          )
         ]));
   }
 }

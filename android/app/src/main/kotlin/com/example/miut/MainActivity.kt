@@ -1,4 +1,4 @@
-package com.example.miut
+package com.example.miut1
 
 import io.flutter.embedding.android.FlutterActivity
 

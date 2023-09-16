@@ -8,6 +8,7 @@ import 'package:miut/pages/widgets/lucknowApidata/faculty.dart';
 import 'package:miut/pages/widgets/lucknowApidata/shift2addmissionlko.dart';
 import 'package:miut/pages/widgets/lucknowApidata/staff.dart';
 import 'package:miut/pages/widgets/lucknowApidata/studentattendence.dart';
+import 'package:miut/pages/widgets/lucknowApidata/today_collection.dart';
 
 import 'package:miut/pages/widgets/lucknowApidata/totalstudentlistlko.dart';
 
@@ -148,6 +149,28 @@ class Lucknow extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
+
+            // lucknow collection
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Material(
+            //     elevation: 5,
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Column(
+            //       children: [
+            //         Container(
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10),
+            //               color: Colors.greenAccent),
+            //           height: 80.h,
+            //           width: double.infinity,
+            //           alignment: Alignment.center,
+            //           child: TodayCollectionL(),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -166,21 +189,21 @@ class Lucknow extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            // Padding(
-            //   padding: EdgeInsets.all(10),
-            //   child: Column(
-            //     children: [
-            //       Container(
-            //           height: 80.h,
-            //           width: double.infinity,
-            //           alignment: Alignment.center,
-            //           decoration: BoxDecoration(
-            //               borderRadius: BorderRadius.circular(10),
-            //               color: Color(0xFFfcc736)),
-            //           child: PhdReg()),
-            //     ],
-            //   ),
-            // ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Container(
+                      height: 80.h,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xFFfcc736)),
+                      child: PhdReg()),
+                ],
+              ),
+            ),
             SizedBox(
               height: 10.h,
             ),

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:miut/model/noida/sudentattendencedataN.dart';
-import 'package:miut/noida/noida_lucknow_student_attandence_screen.dart';
+import 'package:miut/model/noida/todatcollectiondataN.dart';
 
-class StudentAttendence extends StatefulWidget {
+class Collection extends StatefulWidget {
   @override
-  _StudentAttendenceState createState() => _StudentAttendenceState();
+  _CollectionState createState() => _CollectionState();
 }
 
-class _StudentAttendenceState extends State<StudentAttendence> {
-  late Future<StudentAttendenceNModel> futureData;
+class _CollectionState extends State<Collection> {
+  late Future<TodayCollectionNModel> futureData;
 
   @override
   void initState() {
@@ -21,14 +19,14 @@ class _StudentAttendenceState extends State<StudentAttendence> {
     futureData = fetchData();
   }
 
-  Future<StudentAttendenceNModel> fetchData() async {
+  Future<TodayCollectionNModel> fetchData() async {
     const apiUrl =
-        'https://noidastd.muituniversity.in/api/student/GetStudentAttendance'; // Replace with your API URL
+        'https://noidastd.muituniversity.in/api/student/GetTodayCollection'; // Replace with your API URL
 
     final response = await http.get(Uri.parse(apiUrl));
 
     if (response.statusCode == 200) {
-      return StudentAttendenceNModel.fromJson(json.decode(response.body));
+      return TodayCollectionNModel.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load data from API');
     }
@@ -44,7 +42,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<StudentAttendenceNModel>(
+    return FutureBuilder<TodayCollectionNModel>(
       future: futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -57,27 +55,24 @@ class _StudentAttendenceState extends State<StudentAttendence> {
           return Text('Error: ${snapshot.error}');
         } else {
           final album = snapshot.data!;
-          return InkWell(
-            onTap: (){
-              Get.to(
-                NoidaStudentAttandence(),
-              );
-            },
+
+          return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 05),
                   child: Text(
-                    '${album.data?.studentAttendance ?? "Empty"} ',
+                    '₹${album.data?.todayCollection ?? "Empty"}',
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
                   ),
                 ),
-                const Text("Student",
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
+                //collectionNoida1 = Data.collectionAmount!();
+                const Text("Today Collection",
+                    style: TextStyle(color: Colors.white, fontSize: 18))
               ],
             ),
           );

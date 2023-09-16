@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:miut/lucknow/lucknow_student_attandence_screen.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -56,7 +58,12 @@ class _StudentAttendenceLkoState extends State<StudentAttendenceLko> {
         } else {
           final album = snapshot.data!;
 
-          return Center(
+          return InkWell(
+            onTap: (){
+              Get.to(
+                LucknowStudentAttandence(),
+              );
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -8,6 +8,7 @@ import 'package:miut/pages/widgets/NoidaApidata/Shift2Admissionnoida.dart';
 import 'package:miut/pages/widgets/NoidaApidata/TotalstudentNoida.dart';
 import 'package:miut/pages/widgets/NoidaApidata/faculty.dart';
 import 'package:miut/pages/widgets/NoidaApidata/studentAttendence.dart';
+import 'package:miut/pages/widgets/NoidaApidata/total_collection.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
 import 'package:miut/pages/widgets/NoidaApidata/Staff.dart';
 import 'widgets/currentdate.dart';
@@ -147,6 +148,28 @@ class Noida extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
+
+            // noida collection
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Material(
+            //     elevation: 5,
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Column(
+            //       children: [
+            //         Container(
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10),
+            //               color: Colors.greenAccent),
+            //           height: 80.h,
+            //           width: double.infinity,
+            //           alignment: Alignment.center,
+            //           child: Collection(),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Material(

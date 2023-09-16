@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:miut/init_variable.dart';
-import 'package:miut/pages/splash.dart';
+import 'package:get/get.dart';
+import 'package:miut/infrastructures/utils/local_storage/init_value.dart';
 import 'package:miut/pages/widgets/mainpage.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
+          return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'MUIT MANAGEMENT',
             theme: ThemeData(

@@ -29,7 +29,7 @@ class _FacultyState extends State<Faculty> {
     if (response.statusCode == 200) {
       return FacultyAttendenceNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -219,7 +219,7 @@ class _FacultyDataState extends State<FacultyData> {
     if (response.statusCode == 200) {
       return Album1.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw Exception('Data not found');
     }
   }
 

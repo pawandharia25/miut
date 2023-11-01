@@ -19,7 +19,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return EmployeeAttendenceDataModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -32,7 +32,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return EmployeeAttendenceStaffNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -45,7 +45,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return FinacialYearDataNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -58,7 +58,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return RecoveryFeesNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -71,7 +71,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return Shift2AddmidionLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -84,7 +84,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return StudentAttendencedataNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -97,7 +97,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return TodayCollectionDataNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -110,7 +110,7 @@ class NoidaAPi {
     if (response.statusCode == 200) {
       return TotalStudentDataListNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 }

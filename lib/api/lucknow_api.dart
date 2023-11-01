@@ -19,7 +19,7 @@ print("  response1  $response");
     if (response.statusCode == 200) {
       return FacultyEmployeeLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Failed to load data from API');
     }
   }
 
@@ -33,7 +33,7 @@ print("  response2  $response");
       return FinacialYearCollectionLkoModel.fromJson(
           json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Failed to load data from API');
     }
   }
 
@@ -46,7 +46,7 @@ print("  response3  $response");
     if (response.statusCode == 200) {
       return RecoveryFeesLkoDataModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Failed to load data from API');
     }
   }
 
@@ -59,7 +59,7 @@ print("  response4  $response");
     if (response.statusCode == 200) {
       return Shift2AddmidionLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Failed to load data from API');
     }
   }
 
@@ -72,7 +72,7 @@ print("  response5  $response");
     if (response.statusCode == 200) {
       return StaffAttendenceLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Failed to load data from API');
     }
   }
 
@@ -85,7 +85,7 @@ print("  response6  $response");
     if (response.statusCode == 200) {
       return StudentAttendenceDatalkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -98,7 +98,7 @@ print("  response7 $response");
     if (response.statusCode == 200) {
       return TodayCollectionLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -112,7 +112,7 @@ print("  response7 $response");
     if (response.statusCode == 200) {
       return TotalStudentDataLkoModle.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -125,7 +125,7 @@ print("  response9  $response");
     if (response.statusCode == 200) {
       return Shift2AddmidionLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 }

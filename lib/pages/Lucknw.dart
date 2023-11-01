@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:miut/api/lucknow_api.dart';
 import 'package:miut/lucknow/facultydatalko.dart';
+import 'package:miut/lucknow/lucknow_student_attandence_screen.dart';
 import 'package:miut/lucknow/staffdatalko.dart';
 import 'package:miut/pages/widgets/lucknowApidata/faculty.dart';
+import 'package:miut/pages/widgets/lucknowApidata/fincial_year_lucknow.dart';
+import 'package:miut/pages/widgets/lucknowApidata/recovery_fees_lucknow.dart';
 
 import 'package:miut/pages/widgets/lucknowApidata/shift2addmissionlko.dart';
 import 'package:miut/pages/widgets/lucknowApidata/staff.dart';
@@ -96,9 +100,6 @@ class Lucknow extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10.h,
-            ),
             InkWell(
               onTap: () {
                 Navigator.push(context,
@@ -124,33 +125,34 @@ class Lucknow extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        height: 80.h,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.orange.shade300),
-                        child: StudentAttendenceLko()),
-                  ],
+            InkWell(
+              onTap: () {
+                Get.to(
+                  LucknowStudentAttandence(),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Material(
+                  elevation: 5,
+                  borderRadius: BorderRadius.circular(10),
+                  child: Column(
+                    children: [
+                      Container(
+                          height: 80.h,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.orange.shade300),
+                          child: StudentAttendenceLko()),
+                    ],
+                  ),
                 ),
               ),
             ),
-            SizedBox(
-              height: 10.h,
-            ),
-
-            // lucknow collection
+            //
+            // // lucknow collection
             // Padding(
             //   padding: const EdgeInsets.all(10),
             //   child: Material(
@@ -171,64 +173,106 @@ class Lucknow extends StatelessWidget {
             //     ),
             //   ),
             // ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                      height: 80.h,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFF111d5e)),
-                      child: Shift2AdmissionLko()),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                      height: 80.h,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFFfcc736)),
-                      child: PhdReg()),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: [
-                    Container(
-                        height: 200,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.lightBlue.shade300),
-                        child: TotalStudentlLko()),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 80.h,
-            )
+            //
+            // // lucknow collection
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Material(
+            //     elevation: 5,
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Column(
+            //       children: [
+            //         Container(
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10.h),
+            //               color: Colors.pink.shade300),
+            //           height: 80.h,
+            //           width: double.infinity,
+            //           alignment: Alignment.center,
+            //           child: FinacialYearLko(),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //           height: 80.h,
+            //           width: double.infinity,
+            //           alignment: Alignment.center,
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10),
+            //               color: Color(0xFF111d5e)),
+            //           child: Shift2AdmissionLko()),
+            //     ],
+            //   ),
+            // ),
+            //
+            // // lucknow PHD
+            // Padding(
+            //   padding: EdgeInsets.all(10),
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //         height: 80.h,
+            //         width: double.infinity,
+            //         alignment: Alignment.center,
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(10),
+            //             color: Color(0xFFfcc736)),
+            //         child: PhdReg(),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            //
+            //
+            // // lucknow collection
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Material(
+            //     elevation: 5,
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Column(
+            //       children: [
+            //         Container(
+            //             height: 200,
+            //             width: double.infinity,
+            //             alignment: Alignment.center,
+            //             decoration: BoxDecoration(
+            //                 borderRadius: BorderRadius.circular(10),
+            //                 color: Colors.green.shade300),
+            //             child: RecoveryFeesLko()),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Material(
+            //     elevation: 5,
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Column(
+            //       children: [
+            //         Container(
+            //           height: 200,
+            //           width: double.infinity,
+            //           alignment: Alignment.center,
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10),
+            //               color: Colors.lightBlue.shade300),
+            //           child: TotalStudentlLko(),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 80.h,
+            // )
           ],
         ),
       ]),

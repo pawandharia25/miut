@@ -10,6 +10,7 @@ import 'package:miut/data/response/status.dart';
 import 'package:miut/infrastructures/widgets/custom_container.dart';
 import 'package:miut/infrastructures/widgets/internet_exception.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
+import 'package:miut/pages/widgets/currentdate.dart';
 
 class NoidaStudentAttandence
     extends GetView<NoidaStudentAttandenceController> {
@@ -56,19 +57,21 @@ class NoidaStudentAttandence
                     ],
                   ),
                 ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '${currentDate.toString()}  ',
+                    style: TextStyle(fontSize: 15, color: Colors.black,),
+                  ),
+                ),
                 Expanded(
                   child: ListView.builder(
                       itemCount: controller.dataList.value.data!.length,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: EdgeInsets.only(
-                            left: 15.w,
-                            right: 15.w,
-                            top: 10.h,
-                          ),
                           padding: EdgeInsets.only(
-                            top: 5.w,
-                            bottom: 20.w,
+                            top: 10.w,
+
                           ),
                           child: Obx(() {
                             return Center(

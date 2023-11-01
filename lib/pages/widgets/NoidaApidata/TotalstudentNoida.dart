@@ -28,7 +28,7 @@ class _TotalStudentNState extends State<TotalStudentN> {
     if (response.statusCode == 200) {
       return TotalStudentListNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 

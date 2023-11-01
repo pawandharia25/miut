@@ -28,7 +28,7 @@ class _TodayCollectionLState extends State<TodayCollectionL> {
     if (response.statusCode == 200) {
       return TodatCollectionLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 

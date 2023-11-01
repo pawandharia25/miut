@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:miut/model/noida/financialyearcollectionN.dart';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:miut/model/noida/shift2admissiondataN.dart';
 
-class Shift2Admission extends StatefulWidget {
+
+class FinacialYear extends StatefulWidget {
   @override
-  _Shift2AdmissionState createState() => _Shift2AdmissionState();
+  _FinacialYearState createState() => _FinacialYearState();
 }
 
-class _Shift2AdmissionState extends State<Shift2Admission> {
-  late Future<Shift2AddmidionNModel> futureData;
+class _FinacialYearState extends State<FinacialYear> {
+  late Future<FinacialYearCollectionNModel> futureData;
 
   @override
   void initState() {
@@ -19,14 +20,14 @@ class _Shift2AdmissionState extends State<Shift2Admission> {
     futureData = fetchData();
   }
 
-  Future<Shift2AddmidionNModel> fetchData() async {
+  Future<FinacialYearCollectionNModel> fetchData() async {
     const apiUrl =
-        'https://noidastd.muituniversity.in/api/student/GetAdmissionN'; // Replace with your API URL
+        'https://noidastd.muituniversity.in/api/student/GetCollectionFinancialYear'; // Replace with your API URL
 
     final response = await http.get(Uri.parse(apiUrl));
 
     if (response.statusCode == 200) {
-      return Shift2AddmidionNModel.fromJson(json.decode(response.body));
+      return FinacialYearCollectionNModel.fromJson(json.decode(response.body));
     } else {
       throw ('Data not found');
     }
@@ -42,13 +43,11 @@ class _Shift2AdmissionState extends State<Shift2Admission> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Shift2AddmidionNModel>(
+    return FutureBuilder<FinacialYearCollectionNModel>(
       future: futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SizedBox(
-            height: 30,
-            width: 30,
+          return Center(
             child: CircularProgressIndicator(),
           ); // Display loading indicator
         } else if (snapshot.hasError) {
@@ -60,19 +59,18 @@ class _Shift2AdmissionState extends State<Shift2Admission> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Text(
-                    '${album.data?.shift2Admission ?? "Empty"} ',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
+                Text(
+                  '₹${album.data?.financialYearCollection ?? "Empty"}',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                  textAlign: TextAlign.center,
                 ),
-                const Text("Shift 2 Admission",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
+                Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text("Collection 2023-24",
+                        style: TextStyle(color: Colors.white, fontSize: 18))),
               ],
             ),
           );

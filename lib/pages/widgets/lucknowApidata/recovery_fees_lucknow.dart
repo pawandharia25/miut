@@ -3,15 +3,15 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:miut/model/lucknow/totalstudentlko.dart';
+import 'package:miut/model/lucknow/recoveryfeesdatalko.dart';
 
-class TotalStudentlLko extends StatefulWidget {
+class RecoveryFeesLko extends StatefulWidget {
   @override
-  _TotalStudentlLkoState createState() => _TotalStudentlLkoState();
+  _RecoveryFeesLkoState createState() => _RecoveryFeesLkoState();
 }
 
-class _TotalStudentlLkoState extends State<TotalStudentlLko> {
-  late Future<TotalStudentListLkoModle> futureData;
+class _RecoveryFeesLkoState extends State<RecoveryFeesLko> {
+  late Future<RecoveryFeesLkoModel> futureData;
 
   @override
   void initState() {
@@ -19,14 +19,14 @@ class _TotalStudentlLkoState extends State<TotalStudentlLko> {
     futureData = fetchData();
   }
 
-  Future<TotalStudentListLkoModle> fetchData() async {
+  Future<RecoveryFeesLkoModel> fetchData() async {
     const apiUrl =
-        'https://luckstd.muituniversity.in/api/student/GetAdmissionN'; // Replace with your API URL
+        'https://luckstd.muituniversity.in/api/student/GETRecoverableFees'; // Replace with your API URL
 
     final response = await http.get(Uri.parse(apiUrl));
 
     if (response.statusCode == 200) {
-      return TotalStudentListLkoModle.fromJson(json.decode(response.body));
+      return RecoveryFeesLkoModel.fromJson(json.decode(response.body));
     } else {
       throw ('Data not found');
     }
@@ -42,7 +42,7 @@ class _TotalStudentlLkoState extends State<TotalStudentlLko> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<TotalStudentListLkoModle>(
+    return FutureBuilder<RecoveryFeesLkoModel>(
       future: futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -55,26 +55,31 @@ class _TotalStudentlLkoState extends State<TotalStudentlLko> {
           return Text('Error: ${snapshot.error}');
         } else {
           final album = snapshot.data!;
+
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: Text(
-                    '${album.data?.totalStudent ?? "Empty"} ',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                  child: Container(
+                    child: Text(
+                      '₹${album.data?.recoverableFeesTotal ?? "Empty"} ',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
                   ),
                 ),
-                const Text("Total Student",
+                const Text("Recovery Fees",
                     style: TextStyle(color: Colors.white, fontSize: 18)),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    'Shift 1- ${album.data?.shiftIStudent ?? "Empty"}\nShift 2- ${album.data?.shiftIIStudent ?? "Empty"}\nSection A- ${album.data?.sectionAStudent ?? "Empty"} ',
+                    'Shift 1- ₹${album.data?.recoverableFeesShiftI ?? "Empty"}\nShift 2- ₹${album.data?.recoverableFeesShiftII ?? "Empty"}\nSection A- ₹${album.data?.sectionA ?? "Empty"}',
+                    textAlign: TextAlign.center,
                     style: const TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),

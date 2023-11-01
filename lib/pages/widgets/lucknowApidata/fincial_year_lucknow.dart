@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:miut/api/lucknow_api.dart';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:miut/model/noida/shift2admissiondataN.dart';
+import 'package:miut/model/lucknow/financialyearcolletionLko.dart';
 
-class Shift2Admission extends StatefulWidget {
+
+
+class FinacialYearLko extends StatefulWidget {
   @override
-  _Shift2AdmissionState createState() => _Shift2AdmissionState();
+  _FinacialYearLkoState createState() => _FinacialYearLkoState();
 }
 
-class _Shift2AdmissionState extends State<Shift2Admission> {
-  late Future<Shift2AddmidionNModel> futureData;
+class _FinacialYearLkoState extends State<FinacialYearLko> {
+  late Future<FinacialYearCollectionLkoModel> futureData;
 
   @override
   void initState() {
     super.initState();
-    futureData = fetchData();
+    futureData = LucknowAPi().FinancialYEarCollectionLko();
   }
 
-  Future<Shift2AddmidionNModel> fetchData() async {
+  Future<FinacialYearCollectionLkoModel> fetchData() async {
     const apiUrl =
-        'https://noidastd.muituniversity.in/api/student/GetAdmissionN'; // Replace with your API URL
+        'https://luckstd.muituniversity.in/api/student/GetCollectionFinancialYear'; // Replace with your API URL
 
     final response = await http.get(Uri.parse(apiUrl));
 
     if (response.statusCode == 200) {
-      return Shift2AddmidionNModel.fromJson(json.decode(response.body));
+      return FinacialYearCollectionLkoModel.fromJson(json.decode(response.body));
     } else {
       throw ('Data not found');
     }
@@ -42,7 +45,7 @@ class _Shift2AdmissionState extends State<Shift2Admission> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Shift2AddmidionNModel>(
+    return FutureBuilder<FinacialYearCollectionLkoModel>(
       future: futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -60,19 +63,18 @@ class _Shift2AdmissionState extends State<Shift2Admission> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Text(
-                    '${album.data?.shift2Admission ?? "Empty"} ',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
+                Text(
+                  '₹${album.data?.financialYearCollection ?? "Empty"}',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                  textAlign: TextAlign.center,
                 ),
-                const Text("Shift 2 Admission",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
+                Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text("Collection 2023-24",
+                        style: TextStyle(color: Colors.white, fontSize: 18))),
               ],
             ),
           );

@@ -30,7 +30,7 @@ class _StaffState extends State<Staff> {
     if (response.statusCode == 200) {
       return StaffAttendenceNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 
@@ -219,7 +219,7 @@ class _StaffDataState extends State<StaffData> {
     if (response.statusCode == 200) {
       return Album.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 

@@ -30,7 +30,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
     if (response.statusCode == 200) {
       return StudentAttendenceNModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 

@@ -30,7 +30,7 @@ class _StudentAttendenceLkoState extends State<StudentAttendenceLko> {
     if (response.statusCode == 200) {
       return StudentAttendenceLkoModel.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load data from API');
+      throw ('Data not found');
     }
   }
 

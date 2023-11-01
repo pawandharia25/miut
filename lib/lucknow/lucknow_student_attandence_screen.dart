@@ -9,6 +9,7 @@ import 'package:miut/data/response/status.dart';
 import 'package:miut/infrastructures/widgets/custom_container.dart';
 import 'package:miut/infrastructures/widgets/internet_exception.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
+import 'package:miut/pages/widgets/currentdate.dart';
 
 class LucknowStudentAttandence
     extends GetView<LucknowStudentAttandenceController> {
@@ -51,8 +52,16 @@ class LucknowStudentAttandence
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
-                      )
+                      ),
+
                     ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '${currentDate.toString()}  ',
+                    style: TextStyle(fontSize: 15, color: Colors.black,),
                   ),
                 ),
                 Expanded(
@@ -60,14 +69,10 @@ class LucknowStudentAttandence
                       itemCount: controller.dataList.value.data!.length,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: EdgeInsets.only(
-                            left: 15.w,
-                            right: 15.w,
-                            top: 10.h,
-                          ),
+
                           padding: EdgeInsets.only(
-                            top: 5.w,
-                            bottom: 20.w,
+                            top: 10.w,
+
                           ),
                           child: Obx(() {
                             return Center(

@@ -52,6 +52,7 @@ dependencies:
   fluttertoast: ^8.2.2
   google_fonts: ^6.0.0
   get: ^4.6.6
+  search_page: ^2.3.0
  
  
   

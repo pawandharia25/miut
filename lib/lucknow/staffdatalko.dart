@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:miut/model/lucknow/staffemployeeattendencelko.dart';
 import 'package:miut/pages/widgets/appbarlogo.dart';
 import 'package:miut/pages/widgets/lucknowApidata/staff.dart';
+import 'package:search_page/search_page.dart';
 import '../pages/widgets/currentdate.dart';
 
 class StaffListLko extends StatefulWidget {
@@ -156,22 +158,158 @@ class _StaffListLkoState extends State<StaffListLko> {
                 SizedBox(
                   height: 10.0,
                 ),
-                InkWell(
-                  onTap: () {
-                    // _selectDate1(context);
-                    _selectDate(context);
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xFF111d5e),
-                          borderRadius: BorderRadius.circular(17)),
-                      height: 45,
-                      width: 90,
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Select Date',
-                        style: TextStyle(color: Colors.white),
-                      )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        // _selectDate1(context);
+                        _selectDate(context);
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xFF111d5e),
+                              borderRadius: BorderRadius.circular(17)),
+                          height: 45,
+                          width: 90,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Select Date',
+                            style: TextStyle(color: Colors.white),
+                          )),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        showSearch(
+                          context: context,
+                          delegate: SearchPage<Data>(
+                              items: dataList,
+                              searchLabel: 'Search Staff',
+                              suggestion: Center(
+                                child: Text(
+                                  'Filter Staff by Name',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              failure: Center(
+                                child: Text(
+                                  'Found Nothing :(',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              filter: (person) => [
+                                person.employeeName,
+                              ],
+                              builder: (person) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 10, top: 10),
+                                  child: Table(
+                                    border: TableBorder(
+                                      horizontalInside: BorderSide(
+                                        color: Color(
+                                            0xFF111d5e), // Color of the border
+                                        width: 1.0, // Width of the border
+                                      ),
+                                      verticalInside: BorderSide(
+                                        color: Color(
+                                            0xFF111d5e), // Color of the border
+                                        width: 1.0, // Width of the border
+                                      ),
+                                      bottom: BorderSide(
+                                        color: Color(
+                                            0xFF111d5e), // Color of the bottom border
+                                        width:
+                                        1.0, // Width of the bottom border
+                                      ),
+                                    ),
+                                    columnWidths: {
+                                      0: FlexColumnWidth(4),
+                                      1: FlexColumnWidth(4),
+                                      2: FlexColumnWidth(1.2),
+                                    }, // Allows to add a border decoration around your table
+                                    children: [
+                                      TableRow(
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                alignment:
+                                                Alignment.centerLeft,
+                                                child: Text(
+                                                  "${person.employeeName ?? "Empty"}",
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                alignment:
+                                                Alignment.centerLeft,
+                                                child: Text(
+                                                  "${person.employeeCode ?? "Empty"}",
+                                                  textAlign:
+                                                  TextAlign.justify,
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      color:
+                                                      Color(0xFFfcc736)),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Text(
+                                            '${person.departmentSName ?? "Empty"}',
+                                            style: TextStyle(fontSize: 15),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          person.status == "P"
+                                              ? Text(
+                                            '${person.status ?? "Empty"}',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.green,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          )
+                                              : Text(
+                                            '${person.status ?? "Empty"}',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.red,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }),
+                        );
+                      },
+                      child:  Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xFF111d5e),
+                              borderRadius: BorderRadius.circular(17)),
+                          height: 45,
+                          width: 90,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Search',
+                            style: TextStyle(color: Colors.white),
+                          )),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 10,
